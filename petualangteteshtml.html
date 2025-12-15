@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Tetes Air: Siklus Hidrologi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Aesthetic */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #89cff0 0%, #4682b4 100%); /* Gradien Biru Aesthetic */
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .slideshow-container {
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background-color: #ffffff;
+            min-height: 70vh; 
+        }
+
+        .mySlides {
+            display: none; 
+            padding: 50px;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .slide-title {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            font-weight: 700;
+        }
+
+        .slide-content p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            text-align: justify;
+            margin: 15px 0;
+        }
+
+        .slide-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 25px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigasi */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 18px;
+            margin-top: -30px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.4s ease;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .next { right: 10px; border-radius: 10px 0 0 10px; }
+        .prev { left: 10px; border-radius: 0 10px 10px 0; }
+        .prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
+
+        /* Kuis Pilihan Ganda */
+        .quiz-section {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .question-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8faff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0056b3;
+        }
+
+        .answer-option {
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            font-size: 1.05em;
+        }
+
+        .answer-option:hover {
+            background-color: #e6f2ff;
+            border-color: #007bff;
+        }
+
+        /* Feedback Visual */
+        .correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: 700;
+        }
+
+        .incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+            font-weight: 700;
+        }
+
+        .disabled-quiz {
+            pointer-events: none; /* Mencegah klik setelah jawaban */
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+    <div class="mySlides">
+        <h1 class="slide-title">Selamat Datang di Petualangan Tetes Air!</h1>
+        <div class="slide-content">
+            <p>Halo! Saya adalah Tetes, sebuah molekul air kecil. Ikuti perjalanan saya yang tak pernah berakhir, yaitu **Siklus Hidrologi** atau **Siklus Air**. Perjalanan ini adalah proses alami pergerakan air dari bumi ke atmosfer dan kembali lagi ke bumi.</p>
+            <img src="teti1.png" alt="Siklus Air Global">
+            <p style="text-align: center; font-style: italic;">(Menunjukkan gambar Teti si Petualang Tetes Air)</p>
+        </div>
+    </div>
+
+    <div class="mySlides">
+        <h1 class="slide-title">Fase 1: Evaporasi (Meninggalkan Rumah)</h1>
+        <div class="slide-content">
+            <p>Perjalanan saya dimulai di samudra atau sungai. Ketika Matahari memberikan energi panas, saya berubah wujud dari cair menjadi uap air (gas). Saya naik ke atmosfer! Proses penguapan dari permukaan air ini disebut **Evaporasi**.</p>
+            <img src="teti2.jpg" alt="Ilustrasi Evaporasi (Penguapan)">
+            <p style="text-align: center; font-style: italic;">(Menunjukkan proses menguapnya air laut)</p>
+        </div>
+    </div>
+    
+    <div class="mySlides">
+        <h1 class="slide-title">Fase 2: Kondensasi (Membentuk Awan)</h1>
+        <div class="slide-content">
+            <p>Ketika saya mencapai ketinggian, suhu udara dingin membuat saya dan teman-teman uap air kehilangan energi dan berkumpul kembali menjadi tetesan air cair atau kristal es yang sangat kecil. Kami membentuk **Awan**! Proses ini adalah **Kondensasi**.</p>
+            <img src="teti3.jpg" alt="Ilustrasi Kondensasi (Pembentukan Awan)">
+            <p style="text-align: center; font-style: italic;">(Menunjukkan proses pembuatan awan)</p>
+        </div>
+    </div>
+
+
+    <div class="mySlides">
+        <h1 class="slide-title">Fase 3: Presipitasi (Tugas Penting)</h1>
+        <div class="slide-content">
+            <p>Awan menjadi terlalu padat dan berat. Kami tidak bisa bertahan lagi di udara dan jatuh kembali ke bumi dalam berbagai bentuk seperti Hujan, Salju, atau Es. Ini adalah **Presipitasi** atau Curah Hujan.</p>
+            <img src="teti4.jpg" alt="Ilustrasi Presipitasi (Hujan)">
+            <p style="text-align: center; font-style: italic;">(Menunjukkan kondisi hujan sedang turun)</p>
+        </div>
+    </div>
+
+    <div class="mySlides">
+        <h1 class="slide-title">Fase 4: Koleksi & Infiltrasi (Menunggu Giliran Berikutnya)</h1>
+        <div class="slide-content">
+            <p>Setelah mendarat, saya bisa mengalir di permukaan tanah menuju sungai atau laut (**Runoff**), atau meresap ke dalam tanah menjadi air tanah (**Infiltrasi**). Di sinilah saya terkumpul, siap untuk diuapkan lagi oleh Matahari, dan siklus pun berlanjut!</p>
+            <img src="teti5.jpg" alt="Ilustrasi Runoff dan Infiltrasi">
+            <p style="text-align: center; font-style: italic;">(menunjukkan air di permukaan dan kembali ke sumber)</p>
+        </div>
+    </div>
+
+    <div class="mySlides">
+        <h1 class="slide-title">Uji Pengetahuan: Kuis Interaktif</h1>
+        <div class="quiz-section">
+            
+            <div id="q1" class="question-box">
+                <div class="question-text">1. Inti dari Siklus Hidrologi adalah pergerakan air secara...</div>
+                <div class="answer-option" data-q="q1" data-answer="A">A. Sekali jalan dari bumi ke atmosfer.</div>
+                <div class="answer-option" data-q="q1" data-answer="B">B. Berulang antara bumi dan atmosfer.</div>
+                <div class="answer-option" data-q="q1" data-answer="C">C. Langsung dari laut ke daratan.</div>
+            </div>
+
+            <div id="q2" class="question-box">
+                <div class="question-text">2. Proses perubahan air dari wujud cair menjadi uap air (Evaporasi) dipicu oleh...</div>
+                <div class="answer-option" data-q="q2" data-answer="A">A. Energi Panas dari Matahari.</div>
+                <div class="answer-option" data-q="q2" data-answer="B">B. Dinginnya udara di atmosfer.</div>
+                <div class="answer-option" data-q="q2" data-answer="C">C. Gaya gravitasi bumi.</div>
+            </div>
+
+            <div id="q3" class="question-box">
+                <div class="question-text">3. Istilah Evapotranspirasi merujuk pada gabungan proses Evaporasi dan...</div>
+                <div class="answer-option" data-q="q3" data-answer="A">A. Pergerakan awan.</div>
+                <div class="answer-option" data-q="q3" data-answer="B">B. Pembentukan awan.</div>
+                <div class="answer-option" data-q="q3" data-answer="C">C. Pelepasan uap air dari tumbuhan (Transpirasi).</div>
+            </div>
+
+            <div id="q4" class="question-box">
+                <div class="question-text">4. Syarat utama agar uap air di atmosfer dapat berubah menjadi tetesan air (awan) dalam proses Kondensasi adalah...</div>
+                <div class="answer-option" data-q="q4" data-answer="A">A. Penurunan suhu dan pendinginan.</div>
+                <div class="answer-option" data-q="q4" data-answer="B">B. Peningkatan tekanan udara.</div>
+                <div class="answer-option" data-q="q4" data-answer="C">C. Adanya angin kencang.</div>
+            </div>
+
+            <div id="q5" class="question-box">
+                <div class="question-text">5. Pergerakan awan secara horizontal dari satu wilayah ke wilayah lain (misalnya laut ke darat) disebut sebagai...</div>
+                <div class="answer-option" data-q="q5" data-answer="A">A. Infiltrasi.</div>
+                <div class="answer-option" data-q="q5" data-answer="B">B. Adveksi.</div>
+                <div class="answer-option" data-q="q5" data-answer="C">C. Runoff.</div>
+            </div>
+
+            <div id="q6" class="question-box">
+                <div class="question-text">6. Proses ketika awan menjatuhkan air kembali ke bumi dalam bentuk apa pun disebut...</div>
+                <div class="answer-option" data-q="q6" data-answer="A">A. Evaporasi.</div>
+                <div class="answer-option" data-q="q6" data-answer="B">B. Presipitasi.</div>
+                <div class="answer-option" data-q="q6" data-answer="C">C. Kondensasi.</div>
+            </div>
+
+            <div id="q7" class="question-box">
+                <div class="question-text">7. Air hujan yang meresap ke dalam lapisan tanah dan menjadi air tanah dikenal sebagai proses...</div>
+                <div class="answer-option" data-q="q7" data-answer="A">A. Runoff.</div>
+                <div class="answer-option" data-q="q7" data-answer="B">B. Adveksi.</div>
+                <div class="answer-option" data-q="q7" data-answer="C">C. Infiltrasi.</div>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px; font-weight: 600; color: #007bff;">Silakan klik pada jawaban yang Anda anggap benar!</p>
+
+        </div>
+    </div>
+
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+
+<script>
+    // --- Data Kuis (Jawaban Benar) ---
+    const correctAnswers = {
+        q1: 'B',
+        q2: 'A',
+        q3: 'C',
+        q4: 'A',
+        q5: 'B',
+        q6: 'B',
+        q7: 'C'
+    };
+
+    // --- Logika Kuis Interaktif ---
+    document.querySelectorAll('.answer-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const questionId = this.getAttribute('data-q');
+            const selectedAnswer = this.getAttribute('data-answer');
+            const questionBox = document.getElementById(questionId);
+
+            // Cek apakah pertanyaan sudah dijawab (untuk mencegah double click)
+            if (questionBox.classList.contains('disabled-quiz')) {
+                return;
+            }
+
+            // Tandai pertanyaan sebagai sudah dijawab
+            questionBox.classList.add('disabled-quiz');
+
+            if (correctAnswers[questionId] === selectedAnswer) {
+                // Jawaban Benar
+                this.classList.add('correct');
+            } else {
+                // Jawaban Salah
+                this.classList.add('incorrect');
+                // Beri tahu jawaban yang benar
+                questionBox.querySelectorAll('.answer-option').forEach(opt => {
+                    if (opt.getAttribute('data-answer') === correctAnswers[questionId]) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        });
+    });
+
+    // --- Logika Slideshow ---
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        
+        slides[slideIndex-1].style.display = "block";  
+    }
+</script>
+
+</body>
+</html>
